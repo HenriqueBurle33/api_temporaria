@@ -37,6 +37,31 @@ app.get('/funcionario', (req, res) => {
 })
 
 
+//deletar funcionário
+app.delete('/funcionario',(req, res)=>{
+    res.statusCode = 200
+    id_para_ser_excluido = req.chave //3
+    var db = new sqlite3.Database(DBPATH)
+    var sql = `DELETE FROM funcionario WHERE id_funcionario = ${id_para_ser_excluido}`
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
+
+//update funcionario
+app.put('/funcionario', (req,res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "UPDATE funcionario SET nome = req.nome_inserido, cpf, sexo, "
+})
+
+
+
 //inserir  especialidade
 app.post('/especialidade', (req, res)=> {
     res.statusCode = 200
@@ -56,6 +81,20 @@ app.get('/especialidade', (req, res) => {
     res.statusCode = 200
     var db = new sqlite3.Database(DBPATH)
     var sql = 'SELECT * FROM especialidade'
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
+//delete especialidade
+app.delete('/especialidade',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM especialidade"
     db.all(sql, [],  (err, rows ) => {
         if (err) {
             throw err
@@ -94,6 +133,20 @@ app.get('/empreiteira', (req, res) => {
 })
 
 
+//delete especialidade
+app.delete('/empreiteira',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM empreiteira"
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
 //inserir contrato
 app.post('/contrato', (req,res)=>{
     res.statusCode = 200
@@ -121,6 +174,21 @@ app.get('/contrato', (req,res)=>{
     db.close() 
 })
 
+//deletar contrato
+app.delete('/contrato',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM contrato"
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
+
 
 //inserir oportunidade
 app.post('/oportunidade', (req,res)=>{
@@ -140,6 +208,21 @@ app.get('/oportunidade', (req,res)=>{
     res.statusCode = 200
     var db = new sqlite3.Database(DBPATH)
     var sql = 'SELECT * FROM oportunidade'
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
+
+//delete oportunidade
+app.delete('/oportunidade',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM oportunidade"
     db.all(sql, [],  (err, rows ) => {
         if (err) {
             throw err
@@ -177,6 +260,22 @@ app.get('/obra', (req,res)=>{
 })
 
 
+//delete obra
+app.delete('/obra',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM obra"
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
+
+
 //inserir admin
 app.post('/admin', (req, res)=>{
     var sql = "INSERT INTO admin (nome) VALUES ('" + req.body.nome + "')"
@@ -202,6 +301,22 @@ app.get('/admin', (req,res)=>{
     })
     db.close() 
 })
+
+
+//delete admin
+app.delete('/admin',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM admin"
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
 
 
 //inserir feedback
@@ -231,6 +346,21 @@ app.get('/feedback', (req,res)=>{
 })
 
 
+//delete feedback
+app.delete('/feedback',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM feedback"
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
+
 //inserir endereco
 app.post('/endereco', (req,res)=>{
     res.statusCode = 200
@@ -249,6 +379,21 @@ app.get('/endereco', (req,res)=>{
     res.statusCode = 200
     var db = new sqlite3.Database(DBPATH)
     var sql = 'SELECT * FROM endereco'
+    db.all(sql, [],  (err, rows ) => {
+        if (err) {
+            throw err
+        }
+        res.json(rows)
+    })
+    db.close() 
+})
+
+
+//delete endereco
+app.delete('/endereco',(req, res)=>{
+    res.statusCode = 200
+    var db = new sqlite3.Database(DBPATH)
+    var sql = "DELETE FROM endereco"
     db.all(sql, [],  (err, rows ) => {
         if (err) {
             throw err
